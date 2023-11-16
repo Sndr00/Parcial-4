@@ -1,0 +1,97 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main(){
+int n,i,j,suma=0,sum=0,ul=0, fi1=0, fi2=0, fi3=0,fi=0,ci1=0,ci2=0,ci3=0,ci=0, ts1,ts=0, ti=0, ti1=0;
+srand (time(NULL));
+int A[5][7];
+
+printf("\nMatriz:\n");
+for (i=0;i<5;i++){
+	for (j=0;j<7;j++){
+		A[i][j]=rand()%10;
+		printf("%d ",A[i][j]);
+		
+		if (i == j)
+		suma+=A[i][j];
+		
+		if(i==0)
+		sum+=A[i][j];
+		
+		if(j==6)
+		ul+=A[i][j];
+		
+		if(i==0)
+		fi1+=A[i][j];
+		if(i==2)
+		fi2+=A[i][j];
+		if(i==4)
+		fi3+=A[i][j];
+	
+		fi=fi1+fi2+fi3; 
+		
+		if(j==1)
+		ci1+=A[i][j];
+		if(j==3)
+		ci2+=A[i][j];
+		if(j==5)
+		ci3+=A[i][j];
+	
+		ci=ci3+ci2+ci1;
+		
+		if(i>j)
+		ts1=suma;
+		ts = ts1+A[i][j];
+		
+		if(j<i)
+		ti1=suma;
+		ti= ti1 + A[i][j];
+	}
+	printf("\n");
+}
+printf("\n");
+
+	printf("Suma de la diagonal principal: %d", suma);
+	printf("\n");
+		
+	printf("Suma de la primera fila: %d", sum);
+	printf("\n");
+	
+	printf("Suma de la ultima columna: %d", ul);
+	printf("\n");
+		
+	printf("-----------------------------\n");
+	printf("Suma de la fila 1: %d", fi1);
+	printf("\n");
+	printf("Suma de la fila 3: %d", fi2);
+	printf("\n");
+	printf("Suma de la fila 5: %d", fi3);
+	printf("\n");
+	printf("Suma de las filas impares: %d", fi);
+	printf("\n");
+	
+	printf("-----------------------------\n");
+	printf("Suma de la columna 2: %d", ci1);
+	printf("\n");
+	printf("Suma de la columna 4: %d", ci2);
+	printf("\n");
+	printf("Suma de la columna 6: %d", ci3);
+	printf("\n");
+	printf("Suma de las columnas pares: %d", ci);
+	printf("\n");
+	
+	printf("-----------------------------\n");
+	printf("Suma de la diagonal principal: %d", ts1);
+	printf("\n");
+	printf("Suma de la triangular superior: %d", ts);
+	printf("\n");
+	
+	printf("-----------------------------\n");
+	printf("Suma de la diagonal principal: %d", ti1);
+	printf("\n");
+	printf("Suma de la triangular inferior: %d", ti);
+	printf("\n");
+	
+return 0;
+}
