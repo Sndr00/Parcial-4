@@ -2,52 +2,73 @@
 #include <stdlib.h>
 
 int main (){
-int a,b,c,d,e,f,g,h,i, n, j;	
+int fi1=0, fi2=0, fi3=0,fi=0,ci1=0,ci2=0,ci3=0,ci=0, suma=0, sum=0, i, j;
 int A[3][3];
-	
-printf("Posicion (0,0) ");
-scanf("%d", &a);
-printf("Posicion (0,1) ");
-scanf("%d", &b);
-printf("Posicion (0,2) ");
-scanf("%d", &c);
-printf("Posicion (1,0) ");
-scanf("%d", &d);
-printf("Posicion (1,1) ");
-scanf("%d", &e);
-printf("Posicion (1,2) ");
-scanf("%d", &f);
-printf("Posicion (2,0) ");
-scanf("%d", &g);
-printf("Posicion (2,1) ");
-scanf("%d", &h);
-printf("Posicion (2,2) ");
-scanf("%d", &i);
 
-printf("\nMatriz:\n");
-for (i=0;i<3;i++){
-	for (j=0;j<3;j++){
-		A[i][j];
-		printf("%d ",A[i][j]);
-			}
+for (int i=0;i<3;i++){
+	for (int j=0;j<3;j++){
+		printf("Ingrese un valor [%d][%d]: ",i,j);
+		scanf("%d", &A[i][j]);
+	}
+}
+
+printf("\n\n");
+for (int i=0;i<3;i++){
+    for (int j=0;j<3;j++){
+        printf("%d ",A[i][j]);
+
+	}
 	printf("\n");
+	
+        if(i==0)
+		fi1+=A[0][0]+A[0][1]+A[0][2];
+		
+		if(i==1)
+		fi2+=A[1][0]+A[1][1]+A[1][2];
+		
+		if(i==2)
+		fi3+=A[2][0]+A[2][1]+A[2][2];
+		
+		if(j==0)
+		ci1+=A[i][j];
+		
+		if(i==j)
+		suma+=A[0][0]+A[1][1]+A[2][2];
+		
+		ci2=A[0][1]+A[1][1]+A[2][1];
+		
+		ci3=A[0][2]+A[1][2]+A[2][2];
+		
+		sum=A[0][2]+A[1][1]+A[2][0];
 }
 printf("\n");
 
-	printf("Suma de la fila 1: %d", sum);
+	printf("Suma de la fila 1: %d", fi1);
 	printf("\n");
-		printf("Suma de la fila 2: %d", sum);
+	printf("Suma de la fila 2: %d", fi2);
 	printf("\n");
-		printf("Suma de la fila 3: %d", sum);
+	printf("Suma de la fila 3: %d", fi3);
 	printf("\n");
-		printf("Suma de la columna 1: %d", sum);
+	printf("Suma de la columna 1: %d", ci1);
 	printf("\n");
-		printf("Suma de la columna 2: %d", sum);
+	printf("Suma de la columna 2: %d", ci2);
 	printf("\n");
-		printf("Suma de la columna 3: %d", sum);
+	printf("Suma de la columna 3: %d", ci3);
 	printf("\n");
-	
+	printf("Suma de la diagonal principal: %d", suma);
+	printf("\n");
+	printf("Suma de la diagonal secundaria: %d", sum);
+	printf("\n");
 
+
+if(fi1==fi2==fi3==ci1==ci2==ci3==suma==sum){
+    	printf("La matriz es magica");
+	printf("\n");
+}
+	
+else {
+    printf("La matriz no es magica");
+}
 	
 return 0;
 }
