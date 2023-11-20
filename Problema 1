@@ -3,13 +3,15 @@
 #include <time.h>
 
 int main(){
-int n,i,j,suma=0,sum=0,ul=0, fi1=0, fi2=0, fi3=0,fi=0,ci1=0,ci2=0,ci3=0,ci=0, ts1,ts=0, ti=0, ti1=0;
+int n,i,j,suma=0,sum=0,ul=0, fi1=0, fi2=0, fi3=0,fi=0,ci1=0,ci2=0,ci3=0,ci=0, ts1=0,ts=0, ti=0, ti1=0;
 srand (time(NULL));
 int A[5][7];
+int filas = 5;
+int columnas = 7;
 
 printf("\nMatriz:\n");
-for (i=0;i<5;i++){
-	for (j=0;j<7;j++){
+for (i=0;i<filas;i++){
+	for (j=0;j<columnas;j++){
 		A[i][j]=rand()%10;
 		printf("%d ",A[i][j]);
 		
@@ -39,19 +41,25 @@ for (i=0;i<5;i++){
 		ci3+=A[i][j];
 	
 		ci=ci3+ci2+ci1;
-		
-		if(i>j)
-		ts1=suma;
-		ts = ts1+A[i][j];
-		
-		if(j<i)
-		ti1=suma;
-		ti= ti1 + A[i][j];
 	}
 	printf("\n");
 }
-printf("\n");
 
+ for (i=0;i<filas;i++) {
+        for (j=i+1;j<columnas;j++) {
+            ts1 += A[i][j];
+        }
+    }
+ts=suma+ts1;
+
+ for (i = 0; i < filas; i++) {
+        for (j = 0; j < i; j++) {
+            ti1 += A[i][j];
+        }
+    }
+ti=suma+ti1;
+
+    printf("\n");
 	printf("Suma de la diagonal principal: %d", suma);
 	printf("\n");
 		
@@ -82,13 +90,13 @@ printf("\n");
 	printf("\n");
 	
 	printf("-----------------------------\n");
-	printf("Suma de la diagonal principal: %d", ts1);
+	printf("Suma de la diagonal principal: %d", suma);
 	printf("\n");
 	printf("Suma de la triangular superior: %d", ts);
 	printf("\n");
 	
 	printf("-----------------------------\n");
-	printf("Suma de la diagonal principal: %d", ti1);
+	printf("Suma de la diagonal principal: %d", suma);
 	printf("\n");
 	printf("Suma de la triangular inferior: %d", ti);
 	printf("\n");
