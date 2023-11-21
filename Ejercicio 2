@@ -122,14 +122,14 @@ int main() {
     }
 
  
-    double insertionSortAvg = 0, quickSortAvg = 0, bubbleSortAvg = 0;
+    double insertionSortProm = 0, quickSortProm = 0, bubbleSortProm = 0;
     double insertionSortMin = insertionSortTimes[0], quickSortMin = quickSortTimes[0], bubbleSortMin = bubbleSortTimes[0];
     double insertionSortMax = insertionSortTimes[0], quickSortMax = quickSortTimes[0], bubbleSortMax = bubbleSortTimes[0];
 
     for (int i = 0; i < 100; i++) {
-        insertionSortAvg += insertionSortTimes[i];
-        quickSortAvg += quickSortTimes[i];
-        bubbleSortAvg += bubbleSortTimes[i];
+        insertionSortProm += insertionSortTimes[i];
+        quickSortProm += quickSortTimes[i];
+        bubbleSortProm += bubbleSortTimes[i];
 
         
         if (insertionSortTimes[i] < insertionSortMin) {
@@ -154,25 +154,25 @@ int main() {
         }
     }
 
-    insertionSortAvg /= 100;
-    quickSortAvg /= 100;
-    bubbleSortAvg /= 100;
+    insertionSortProm /= 100;
+    quickSortProm /= 100;
+    bubbleSortProm /= 100;
 
   
     printf("Insertion Sort:\n");
-    printf("Tiempo promedio: %.2f ms\n", insertionSortAvg);
-    printf("Tiempo minimo: %.2f ms\n", insertionSortMin);
-    printf("Tiempo maximo: %.2f ms\n\n", insertionSortMax);
+    printf("Tiempo promedio: %.2f milisegundos\n", insertionSortProm);
+    printf("Tiempo minimo: %.2f milisegundos\n", insertionSortMin);
+    printf("Tiempo maximo: %.2f milisegundos\n\n", insertionSortMax);
 
     printf("Quick Sort:\n");
-    printf("Tiempo promedio: %.2f ms\n", quickSortAvg);
-    printf("Tiempo minimo: %.2f ms\n", quickSortMin);
-    printf("Tiempo maximo: %.2f ms\n\n", quickSortMax);
+    printf("Tiempo promedio: %.2f milisegundos\n", quickSortProm);
+    printf("Tiempo minimo: %.2f milisegundos\n", quickSortMin);
+    printf("Tiempo maximo: %.2f milisegundos\n\n", quickSortMax);
 
     printf("Bubble Sort:\n");
-    printf("Tiempo promedio: %.2f ms\n", bubbleSortAvg);
-    printf("Tiempo minimo: %.2f ms\n", bubbleSortMin);
-    printf("Tiempo maximo: %.2f ms\n", bubbleSortMax);
+    printf("Tiempo promedio: %.2f milisegundos\n", bubbleSortProm);
+    printf("Tiempo minimo: %.2f milisegundos\n", bubbleSortMin);
+    printf("Tiempo maximo: %.2f milisegundos\n", bubbleSortMax);
 
     return 0;
 }
