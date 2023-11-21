@@ -30,13 +30,10 @@ for (i=0;i<filas;i++){
 			}
 	printf("\n");
 }
-printf("\nMatriz 3:\n");
 for (i=0;i<filas;i++){
 		for (j=0;j<columnas;j++){
 			C[i][j]=A[i][j]*B[i][j];
-			printf("%d ",C[i][j]);
 		}
-		printf("\n");
 }
 
 	clock_t toc = clock ();
