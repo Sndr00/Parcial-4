@@ -2,65 +2,177 @@
 #include <stdlib.h>
 #include <time.h>
 
-int main (){
-clock_t tic=clock();
-int i=0, j, n=10000, num, temp=0, bandera=0, posAnterior=0,numeroActual=0, r, p, sumab=0, sumaq=0, sumai=0;
-srand(time(NULL));
-num=rand();
-int arreglo[10000];
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
 
-for(int i=0;i<10000;i++){
-    for(int j=0;j<(i+1);j++){a
-        arreglo[i] = 1 + rand() % 10000;
-        while(arreglo[i]==arreglo[j] && i!=j){ 
-            arreglo[i] = 1 + rand() % 10;
+void insertionSort(int arr[], int n) {
+    int i, key, j;
+    for (i = 1; i < n; i++) {
+        key = arr[i];
+        j = i - 1;
+
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+int partition(int arr[], int low, int high) {
+    int pivot = arr[high];
+    int i = (low - 1);
+
+    for (int j = low; j <= high - 1; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    swap(&arr[i + 1], &arr[high]);
+    return (i + 1);
+}
+
+void quickSort(int arr[], int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(&arr[j], &arr[j + 1]);
+            }
         }
     }
 }
-for(int i=0;i<10000;i++){
-arreglo[i];}
 
-//Burbuja
-for(r=0;r<100;r++){
-for (i=1;i<10000;i++){
-	bandera=0;
-		for (j=0;j<10000-1;j++){
-			if (arreglo[j]>arreglo[j+1]){
-				bandera=1;
-				temp=arreglo[j];
-				arreglo[j]=arreglo[j+1];
-				arreglo[j+1]=temp;
-			}
-		}
-		if (bandera==0);
-		break;
-	}
-	printf("\n\nLista ordenada: \n");
-	for (i=0;i<10000;i++)
-	printf(" %d ", arreglo[i]);
-	clock_t toc = clock ();
-	printf("\nElapsed: %f seconds\n",(double)(toc-tic)/CLOCKS_PER_SEC);
-sumab=CLOCKS_PER_SEC/100;
-	
-//Insercion
-for (i=0;i<n;i++){
-	numeroActual = arreglo[i];
-	 posAnterior=i-1;
-	 while (posAnterior >= 0 && arreglo[posAnterior]>numeroActual){
-	 	arreglo[posAnterior+1]=arreglo[posAnterior];
-	 	posAnterior--;
-	 }
-	 arreglo[posAnterior+1]=numeroActual;
+void generateRandomArray(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        arr[i] = rand() % 10000; 
+    }
 }
 
-printf("Insertation\n");
-for (i=0;i<n;i++)
-	printf(" %d ", arreglo[i]);
-	printf("\nElapsed: %f seconds\n",(double)(toc-tic)/CLOCKS_PER_SEC);	
+int main() {
+    const int arraySize = 10000;
+    int arr[arraySize];
+    int tempArr[arraySize];
+    clock_t start, end;
+    double elapsedTime;
+
+    srand(time(NULL));
+
+ 
+    generateRandomArray(arr, arraySize);
+
+    
+    double insertionSortTimes[100];
+    for (int i = 0; i < 100; i++) {
+        
+        for (int j = 0; j < arraySize; j++) {
+            tempArr[j] = arr[j];
+        }
+
+        start = clock();
+        insertionSort(tempArr, arraySize);
+        end = clock();
+
+        elapsedTime = ((double)(end - start)) / CLOCKS_PER_SEC * 1000;
+        insertionSortTimes[i] = elapsedTime;
+    }
+
+    
+    double quickSortTimes[100];
+    for (int i = 0; i < 100; i++) {
+        
+        for (int j = 0; j < arraySize; j++) {
+            tempArr[j] = arr[j];
+        }
+
+        start = clock();
+        quickSort(tempArr, 0, arraySize - 1);
+        end = clock();
+
+        elapsedTime = ((double)(end - start)) / CLOCKS_PER_SEC * 1000;
+        quickSortTimes[i] = elapsedTime;
+    }
+
+   
+    double bubbleSortTimes[100];
+    for (int i = 0; i < 100; i++) {
+        
+        for (int j = 0; j < arraySize; j++) {
+            tempArr[j] = arr[j];
+        }
+
+        start = clock();
+        bubbleSort(tempArr, arraySize);
+        end = clock();
+
+        elapsedTime = ((double)(end - start)) / CLOCKS_PER_SEC * 1000;
+        bubbleSortTimes[i] = elapsedTime;
+    }
+
+ 
+    double insertionSortAvg = 0, quickSortAvg = 0, bubbleSortAvg = 0;
+    double insertionSortMin = insertionSortTimes[0], quickSortMin = quickSortTimes[0], bubbleSortMin = bubbleSortTimes[0];
+    double insertionSortMax = insertionSortTimes[0], quickSortMax = quickSortTimes[0], bubbleSortMax = bubbleSortTimes[0];
+
+    for (int i = 0; i < 100; i++) {
+        insertionSortAvg += insertionSortTimes[i];
+        quickSortAvg += quickSortTimes[i];
+        bubbleSortAvg += bubbleSortTimes[i];
+
+        
+        if (insertionSortTimes[i] < insertionSortMin) {
+            insertionSortMin = insertionSortTimes[i];
+        }
+        if (insertionSortTimes[i] > insertionSortMax) {
+            insertionSortMax = insertionSortTimes[i];
+        }
+
+        if (quickSortTimes[i] < quickSortMin) {
+            quickSortMin = quickSortTimes[i];
+        }
+        if (quickSortTimes[i] > quickSortMax) {
+            quickSortMax = quickSortTimes[i];
+        }
+
+        if (bubbleSortTimes[i] < bubbleSortMin) {
+            bubbleSortMin = bubbleSortTimes[i];
+        }
+        if (bubbleSortTimes[i] > bubbleSortMax) {
+            bubbleSortMax = bubbleSortTimes[i];
+        }
+    }
+
+    insertionSortAvg /= 100;
+    quickSortAvg /= 100;
+    bubbleSortAvg /= 100;
+
+  
+    printf("Insertion Sort:\n");
+    printf("Tiempo promedio: %.2f ms\n", insertionSortAvg);
+    printf("Tiempo minimo: %.2f ms\n", insertionSortMin);
+    printf("Tiempo maximo: %.2f ms\n\n", insertionSortMax);
+
+    printf("Quick Sort:\n");
+    printf("Tiempo promedio: %.2f ms\n", quickSortAvg);
+    printf("Tiempo minimo: %.2f ms\n", quickSortMin);
+    printf("Tiempo maximo: %.2f ms\n\n", quickSortMax);
+
+    printf("Bubble Sort:\n");
+    printf("Tiempo promedio: %.2f ms\n", bubbleSortAvg);
+    printf("Tiempo minimo: %.2f ms\n", bubbleSortMin);
+    printf("Tiempo maximo: %.2f ms\n", bubbleSortMax);
+
+    return 0;
 }
-
-
-	printf("Tiempo promedio de Burbuja= %d", sumab);
-	return 0;
-}	
-	
