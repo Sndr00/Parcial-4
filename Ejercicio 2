@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main (){
+clock_t tic=clock();
+int i=0, j, n=10000, num, temp=0, bandera=0, posAnterior=0,numeroActual=0, r, p, sumab=0, sumaq=0, sumai=0;
+srand(time(NULL));
+num=rand();
+int arreglo[10000];
+
+for(int i=0;i<10000;i++){
+    for(int j=0;j<(i+1);j++){a
+        arreglo[i] = 1 + rand() % 10000;
+        while(arreglo[i]==arreglo[j] && i!=j){ 
+            arreglo[i] = 1 + rand() % 10;
+        }
+    }
+}
+for(int i=0;i<10000;i++){
+arreglo[i];}
+
+//Burbuja
+for(r=0;r<2;r++){
+for (i=1;i<10000;i++){
+	bandera=0;
+		for (j=0;j<10000-1;j++){
+			if (arreglo[j]>arreglo[j+1]){
+				bandera=1;
+				temp=arreglo[j];
+				arreglo[j]=arreglo[j+1];
+				arreglo[j+1]=temp;
+			}
+		}
+		if (bandera==0);
+		break;
+	}
+	printf("\n\nLista ordenada: \n");
+	for (i=0;i<10000;i++)
+	printf(" %d ", arreglo[i]);
+	clock_t toc = clock ();
+	printf("\nElapsed: %f seconds\n",(double)(toc-tic)/CLOCKS_PER_SEC);
+sumab=CLOCKS_PER_SEC/100;
+	
+//Insercion
+for (i=0;i<n;i++){
+	numeroActual = arreglo[i];
+	 posAnterior=i-1;
+	 while (posAnterior >= 0 && arreglo[posAnterior]>numeroActual){
+	 	arreglo[posAnterior+1]=arreglo[posAnterior];
+	 	posAnterior--;
+	 }
+	 arreglo[posAnterior+1]=numeroActual;
+}
+
+printf("Insertation\n");
+for (i=0;i<n;i++)
+	printf(" %d ", arreglo[i]);
+	printf("\nElapsed: %f seconds\n",(double)(toc-tic)/CLOCKS_PER_SEC);	
+}
+
+
+	printf("Tiempo promedio de Burbuja= %d", sumab);
+	return 0;
+}	
+	
