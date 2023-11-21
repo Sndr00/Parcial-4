@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main(){
+srand (time(NULL));
+clock_t tic=clock();
+
+int i,j;
+int A[30][30];
+int B[30][30];
+int C[30][30];
+int filas = 30;
+int columnas = 30;
+
+printf("Matriz 1:\n");
+for (i=0;i<filas;i++){
+	for (j=0;j<columnas;j++){
+		A[i][j]=rand()%10;
+		printf("%d ",A[i][j]);
+			}
+	printf("\n");
+}
+
+printf("\nMatriz 2:\n");
+for (i=0;i<filas;i++){
+	for (j=0;j<columnas;j++){
+		B[i][j]=rand()%10;
+		printf("%d ",B[i][j]);
+			}
+	printf("\n");
+}
+printf("\nMatriz 3:\n");
+for (i=0;i<filas;i++){
+		for (j=0;j<columnas;j++){
+			C[i][j]=A[i][j]*B[i][j];
+			printf("%d ",C[i][j]);
+		}
+		printf("\n");
+}
+
+	clock_t toc = clock ();
+	printf("\nElapsed: %f seconds\n",(double)(toc-tic)/CLOCKS_PER_SEC);
+	
+
+return 0;
+}
